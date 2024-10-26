@@ -39,3 +39,40 @@ fruits.forEach(System.out::println);
 
 
 
+createquery: usado para fazer consultas ao bando de dados:
+
+// para seleconar todos os intens de uma tabela no bandod e dados
+List<Product> products = entityManager.createQuery("FROM Product", Product.class).getResultList();
+
+// para fazer isso porém com um condição:
+
+List<Product> products = entityManager.createQuery("FROM Product WHERE priceProd > :minPrice", Product.class)
+                                      .setParameter("minPrice", 100.0)
+                                      .getResultList();
+
+                                      // para ordenar:
+
+                                      List<Product> products = entityManager.createQuery("FROM Product ORDER BY priceProd ASC", Product.class).getResultList();
+
+
+para joins:
+
+List<Object[]> results = entityManager.createQuery("SELECT p, c FROM Product p JOIN p.category c", Object[].class).getResultList();
+
+
+para contar o total de produtos:
+
+Long count = entityManager.createQuery("SELECT COUNT(p) FROM Product p", Long.class).getSingleResult();
+
+subconsulta:
+
+List<Product> products = entityManager.createQuery("FROM Product p WHERE p.priceProd > (SELECT AVG(p2.priceProd) FROM Product p2)", Product.class).getResultList();
+
+// para pegar média
+
+Double averagePrice = entityManager.createQuery("SELECT AVG(p.priceProd) FROM Product p", Double.class).getSingleResult();
+
+// para group by:
+
+List<Object[]> results = entityManager.createQuery("SELECT c.name, COUNT(p) FROM Product p JOIN p.category c GROUP BY c.name", Object[].class).getResultList();
+

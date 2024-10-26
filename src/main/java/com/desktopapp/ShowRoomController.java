@@ -110,7 +110,9 @@ public class ShowRoomController {
         // qualquer deleção ou adição nessa lsita pode ser monnitorada pelo javafx
 
         try {
-            entityManager.getTransaction().begin();
+            entityManager.getTransaction().begin(); // inicializa as operaões no banco de dados, vc vai começar uma nova transação e td a seguir faz parte dela
+
+            // create query é para fazer selects no banco de dados
             List<Product> products = entityManager.createQuery("FROM Product", Product.class).getResultList();
 
             // Adiciona produtos à lista usando um loop for
@@ -118,7 +120,8 @@ public class ShowRoomController {
                 productList.add(product);
             }
             
-            entityManager.getTransaction().commit();
+            entityManager.getTransaction().commit(); // finaliza a transação
+
         } catch (Exception e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback(); // Reverte a transação em caso de erro
