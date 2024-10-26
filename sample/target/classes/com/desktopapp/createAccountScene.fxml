@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.CreateAccountController" >
+   <children>
+      <Button fx:id="btCreateAccount" layoutX="261.0" layoutY="281.0" mnemonicParsing="false" onAction="#createAccount" text="Criar conta" />
+      <Label layoutX="281.0" layoutY="111.0" text="Nome" />
+      <Label layoutX="281.0" layoutY="197.0" text="Senha" />
+
+      <TextField fx:id="userNameCad" layoutX="223.0" layoutY="138.0" />
+      <PasswordField fx:id="userPassCad" layoutX="223.0" layoutY="222.0" prefHeight="25.0" prefWidth="155.0" />
+
+      <Label layoutX="226.0" layoutY="51.0" prefHeight="17.0" prefWidth="149.0" text="Crie sua conta!" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

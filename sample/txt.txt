@@ -1,0 +1,9 @@
+biblia:
+
+- todo método que for agir a partir do enveto d eum botão precisa ter @FXML isso causa erros como : invoke tagert exeception, reflect.DirectMethodHandleAccessor.invoke,  Error resolving onAction='#createAccount', either the event handler is not in the Namespace
+
+- nada pode estar duplicado nos fxml, nem text nem button pois isso causa parseint error execpition
+
+- todos os campos no fxml que terão alguma interação, por exemplo textField para pegar nome, botão para dar submit, precisam estar no topo do script nomeados acadav um com @FXML antes;
+
+- META-INF precis estar na com do resourcers
