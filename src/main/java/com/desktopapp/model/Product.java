@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-// cria um modelo para o objeto cart
+// cria um modelo para o objeto produto
 
 @Entity
 @Table(name = "tbProducts")
@@ -38,7 +38,7 @@ public class Product {
         return priceProd;
     }
 
-    public void setPriceProd(Double value) {
-        this.priceProd = value;
+    public void setPriceProd(Double price) {
+        this.priceProd = price;
     }
 }

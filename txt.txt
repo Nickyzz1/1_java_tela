@@ -7,3 +7,35 @@ biblia:
 - todos os campos no fxml que terão alguma interação, por exemplo textField para pegar nome, botão para dar submit, precisam estar no topo do script nomeados acadav um com @FXML antes;
 
 - META-INF precis estar na com do resourcers
+
+- Usando o EntityManager, você pode executar operações de persistência. Isso inclui:
+Persistir novas entidades no banco de dados (entityManager.persist(entity)).
+Buscar entidades (entityManager.find(EntityClass.class, primaryKey)).
+Atualizar entidades gerenciadas.
+Remover entidades (entityManager.remove(entity)).
+Fazer consultas usando JPQL (Java Persistence Query Language) ou Criteria API.
+
+métodos do fxcollections:
+
+.observableList() --> retorna uma lista observavel
+
+ObservableList<String> list = FXCollections.observableArrayList("Item 1", "Item 2"); --> retorna uma lista obervavel que começa com elementos
+
+List<String> regularList = new ArrayList<>();
+ObservableList<String> observableList = FXCollections.observableList(regularList); --> cria uam lista observavel a partir de uma lista que já existe
+
+como criar, adicionar e remover uma lista obervavel com fccollection:
+
+ObservableList<String> fruits = FXCollections.observableArrayList("Apple", "Banana", "Cherry");
+
+// Adicionando um novo elemento
+fruits.add("Date");
+
+// Removendo um elemento
+fruits.remove("Banana");
+
+// Imprimindo a lista
+fruits.forEach(System.out::println);
+
+
+
