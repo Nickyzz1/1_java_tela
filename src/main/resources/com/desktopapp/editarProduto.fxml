@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #648a64;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.EditProductController">
+   <children>
+      <Text fill="WHITE" layoutX="184.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDITAR PRODUTO" wrappingWidth="231.8203125">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Text>
+      <Label layoutX="268.0" layoutY="118.0" text="Novo nome" textFill="WHITE" />
+      <TextField fx:id="nameField" layoutX="169.0" layoutY="152.0" prefHeight="35.0" prefWidth="262.0" style="-fx-background-radius: 10;" />
+      <Label layoutX="269.0" layoutY="200.0" text="Novo preço" textFill="WHITE" />
+      <TextField fx:id="priceField" layoutX="226.0" layoutY="232.0" prefHeight="35.0" prefWidth="149.0" style="-fx-background-radius: 10;" />
+
+      <Button fx:id="editButton" layoutX="221.0" layoutY="299.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #46685b;" text="Editar" textFill="WHITE" />
+      <Button fx:id="cancelButton" layoutX="321.0" layoutY="299.0" mnemonicParsing="false" style="-fx-background-color: DC143C;" text="Cancelar" textFill="WHITE" />
+
+   </children>
+</AnchorPane>

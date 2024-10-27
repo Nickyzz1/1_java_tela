@@ -124,7 +124,9 @@ public class Context {
             em = null;
         }
     }
-    
 
+    public EntityManager getEntityManager() {
+        return em;
+    }
 
 }

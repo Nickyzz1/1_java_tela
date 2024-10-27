@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 // import org.hibernate.mapping.List;
 
 import com.desktopapp.model.Cart;
-import com.desktopapp.model.Product;
+
 import com.desktopapp.model.User;
 
 import javafx.collections.FXCollections;
@@ -24,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableCell;
-import javafx.scene.control.TextField;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
