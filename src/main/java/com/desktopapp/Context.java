@@ -96,6 +96,7 @@ public class Context {
 
     public <T> TypedQuery<T> createQuery(Class<T> entityClass, String query) {
         EntityManager em = emf.createEntityManager();
+        //Aqui, um novo EntityManager é criado a partir da EntityManagerFactory (emf). O EntityManager é responsável por gerenciar a persistência das entidades e realizar operações de banco de dados.
         try {
             var queryObj = em.createQuery(query, entityClass);
             System.out.println("\n\n\n\n\nCriou a query na função");
