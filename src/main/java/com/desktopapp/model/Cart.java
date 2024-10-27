@@ -14,6 +14,7 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long idCart;
 
     public Long getIdCart() {
@@ -23,6 +24,17 @@ public class Cart {
     public void setIdCart(Long id) {
         this.idCart = id;
     }
+
+     private Long idProduct;
+
+    public Long getidProduct() {
+        return idProduct;
+    }
+
+    public void setidProduct(Long id) {
+        this.idProduct = id;
+    }
+
     private String nameProd;
 
     public String getNameProd() {
@@ -40,5 +52,15 @@ public class Cart {
 
     public void setValueProd(Double value) {
         this.valueProd = value;
+    }
+
+    private int quantProd;
+
+    public int getQuant() {
+        return quantProd;
+    }
+
+    public void setQuat(int quant) {
+        this.quantProd = quant;
     }
 }

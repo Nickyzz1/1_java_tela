@@ -76,3 +76,13 @@ Double averagePrice = entityManager.createQuery("SELECT AVG(p.priceProd) FROM Pr
 
 List<Object[]> results = entityManager.createQuery("SELECT c.name, COUNT(p) FROM Product p JOIN p.category c GROUP BY c.name", Object[].class).getResultList();
 
+A exceção org.hibernate.PersistentObjectException: detached entity passed to persist que você está enfrentando ocorre porque você está tentando persistir uma entidade que já foi gerenciada pelo Hibernate em uma sessão anterior, mas agora está "desanexada" (detached).
+
+Causas Comuns
+Uso de persist() em uma Entidade Desanexada:
+
+O EntityManager do Hibernate não permite a persistência de entidades que já foram gerenciadas anteriormente. Se uma entidade já foi carregada em uma transação anterior, ela não pode ser persistida novamente sem ser mesclada primeiro.
+Tentativa de Persistir um Objeto Existente:
+
+Se você está tentando adicionar um Cart que já existe (ou foi carregado anteriormente), você deve usar merge() em vez de persist(). O merge() atualiza a entidade existente ou cria uma nova se ela não estiver presente.
+

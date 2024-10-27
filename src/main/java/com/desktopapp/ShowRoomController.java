@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
+import com.desktopapp.model.Cart;
 import com.desktopapp.model.Product;
 import com.desktopapp.model.User;
 
@@ -30,6 +31,9 @@ public class ShowRoomController {
 
     @FXML
     private VBox buttonContainer;  // Certifique-se de que o fx:id "buttonContainer" corresponde ao do FXML
+
+    @FXML
+    private Button btGoToCart;
 
     private User loggedUser;
 
@@ -90,17 +94,90 @@ public class ShowRoomController {
         createProductButtons(buttonContainer, products); // o primeiro parâmetro é ode vc quer que elesz sejam carregados, por exemplo, esse é o id da minha vbox
     }
 
+    private ObservableList<Cart> cartItems = FXCollections.observableArrayList();
+
     // Método para criar os botões de produtos
     public void createProductButtons(VBox buttonContainer, ObservableList<Product> products) {
-        buttonContainer.getChildren().clear();  // limpa
+        buttonContainer.getChildren().clear();
+    
         for (Product product : products) { // um for
             Button productButton = new Button(product.getNameProd()); // botão com o nome do produto
             productButton.setOnAction(event -> {
                 System.out.println("Produto selecionado: " + product.getNameProd());
+
+                Cart cartItem = new Cart();
+
+                cartItem.setidProduct(product.getidProduct());
+                cartItem.setNameProd(product.getNameProd());
+                cartItem.setValueProd(product.getPriceProd());
+                cartItem.setQuat(1);
+
+                cartItems.add(cartItem);
+                saveCartToDatabase();
+
             }); // vai printar qual produto que é quando vc apertar
+
             buttonContainer.getChildren().add(productButton);
         }
     }
+
+     // Método para salvar os itens do carrinho no banco de dados
+     public void saveCartToDatabase() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        
+        try {
+            entityManager.getTransaction().begin();
+            
+            // Persiste cada item do carrinho no banco de dados
+            for (Cart cartItem : cartItems) {
+                entityManager.merge(cartItem);
+            }
+            
+            entityManager.getTransaction().commit();
+            System.out.println("Carrinho salvo no banco de dados.");
+            
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    // private void contator()
+    // {
+    //     entityManagerFactory.createEntityManager();
+    //     ObservableList<Product> productList = FXCollections.observableArrayList();
+    //     // fxcollection tem um método estático chamado observbleList() que retorna uma oberrvableList
+    //     // qualquer deleção ou adição nessa lsita pode ser monnitorada pelo javafx
+
+    //     try {
+    //         EntityManager entityManager = entityManagerFactory.createEntityManager();
+    //         entityManager.getTransaction().begin();
+    //         List<Cart> cart = entityManager.createQuery("FROM tbCart", Cart.class).getResultList();
+    //         int count;
+    //         for ( int i = 0; i < cart.size(); i++) {
+    //             count = 1;
+    //             for (int j = 0; j < cart.size(); j++) {
+
+    //                 if(cart.get(i).getidProduct() == cart.get(j).getidProduct())
+    //                 {
+                       
+    //                 }
+                    
+    //             }
+    //         }
+                
+    //         }
+    //     } catch (IOException e) {
+    //         System.err.println(e);
+    //     } finally {
+    //         entityManager.close();
+    //     }
+
+    // }
 
     // Método para carregar produtos do banco de dados
     private ObservableList<Product> loadProducts() {
@@ -132,5 +209,13 @@ public class ShowRoomController {
         }
     
         return productList; // Retorna a lista de produtos
-    }    
+    }
+    
+    @FXML
+    public void GoToCart() throws Exception
+    {
+        var scene = CartController.CreateScene(loggedUser);
+        Stage currentStage = (Stage) btGoToCart.getScene().getWindow();
+        currentStage.setScene(scene);
+    }
 }

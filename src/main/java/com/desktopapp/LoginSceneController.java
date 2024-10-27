@@ -20,13 +20,6 @@ import javafx.stage.Stage;
 
 public class LoginSceneController {
 
-    public static Scene CreateScene() throws Exception {
-        URL sceneUrl = LoginSceneController.class
-                .getResource("loginScene.fxml");
-        Parent root = FXMLLoader.load(sceneUrl);
-        Scene scene = new Scene(root);
-        return scene;
-    }
     @FXML
     protected Button btLogon;
     @FXML
@@ -37,8 +30,15 @@ public class LoginSceneController {
     protected PasswordField userPass;
     @FXML
     protected CheckBox cbPass;
-
-
+    
+    public static Scene CreateScene() throws Exception {
+        URL sceneUrl = LoginSceneController.class
+                .getResource("loginScene.fxml");
+        Parent root = FXMLLoader.load(sceneUrl);
+        Scene scene = new Scene(root);
+        return scene;
+    }
+    
     @FXML
     protected void submit(ActionEvent e) throws Exception {
         Context ctx = new Context();
@@ -68,9 +68,19 @@ public class LoginSceneController {
             return;
         }
 
-        var scene = ShowRoomController.CreateScene(user);
-        Stage currentStage = (Stage) btLogon.getScene().getWindow();
-        currentStage.setScene(scene);
+        if(user.getName() == "admin")
+        {
+            var scene = HomeAdminController.CreateScene(user);
+            Stage currentStage = (Stage) btLogon.getScene().getWindow();
+            currentStage.setScene(scene);
+
+        } else {
+
+            var scene = ShowRoomController.CreateScene(user);
+            Stage currentStage = (Stage) btLogon.getScene().getWindow();
+            currentStage.setScene(scene);
+        }
+
     }
 
     @FXML

@@ -10,11 +10,21 @@ import javafx.stage.Stage;
 public class App extends Application{
     public static void main(String[] args) {
 
+        Context ctx = new Context();
+
+        User userAdm = new User();
+        userAdm.setName("admin");
+        userAdm.setPassword("123");
+
+        ctx.begin();
+        ctx.save(userAdm);
+        ctx.commit();
+
+        // para testes
         User user = new User();
         user.setName("");
         user.setPassword("");
-
-        Context ctx = new Context();
+        
         ctx.begin();
         ctx.save(user);
         ctx.commit();
