@@ -86,3 +86,5 @@ Tentativa de Persistir um Objeto Existente:
 
 Se você está tentando adicionar um Cart que já existe (ou foi carregado anteriormente), você deve usar merge() em vez de persist(). O merge() atualiza a entidade existente ou cria uma nova se ela não estiver presente.
 
+controller is null
+Esse erro significa que o objeto controller está nulo quando você tenta chamar o método atualizarTabelaCart() no CartController. Isso pode ser causado por uma falha ao obter a instância do controlador da cena, que ocorre normalmente se o FXMLLoader não carregar o arquivo FXML corretamente ou se o método de obtenção do controlador estiver incorreto.

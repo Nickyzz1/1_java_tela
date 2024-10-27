@@ -107,10 +107,9 @@ public class ShowRoomController {
 
                 Cart cartItem = new Cart();
 
-                cartItem.setidProduct(product.getidProduct());
+                cartItem.setIdProduct(product.getidProduct());
                 cartItem.setNameProd(product.getNameProd());
                 cartItem.setValueProd(product.getPriceProd());
-                cartItem.setQuat(1);
 
                 cartItems.add(cartItem);
                 saveCartToDatabase();
@@ -212,10 +211,17 @@ public class ShowRoomController {
     }
     
     @FXML
-    public void GoToCart() throws Exception
-    {
-        var scene = CartController.CreateScene(loggedUser);
-        Stage currentStage = (Stage) btGoToCart.getScene().getWindow();
-        currentStage.setScene(scene);
-    }
+    public void GoToCart() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cartScene.fxml"));
+        Parent root = loader.load();
+        CartController controller = loader.getController(); // jeito de pegar controller é
+        
+        if (controller != null) {
+            controller.atualizarTabelaCart(); // Chame o método apenas se o controller não for nulo
+            Stage currentStage = (Stage) btGoToCart.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } else {
+            System.err.println("Erro: CartController está nulo.");
+        }
+    }     
 }

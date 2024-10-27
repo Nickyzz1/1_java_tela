@@ -3,6 +3,8 @@ package com.desktopapp;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// import org.hibernate.mapping.List;
+
 import com.desktopapp.model.Cart;
 import com.desktopapp.model.Product;
 import com.desktopapp.model.User;
@@ -25,7 +27,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import java.util.List;
 
 import jakarta.persistence.TypedQuery;
 
@@ -38,6 +40,9 @@ public class CartController implements Initializable {
     @FXML
     protected Button goBack;
 
+    @FXML
+    protected Button btClean;
+
     @FXML 
     private TableView<Cart> tableView; 
 
@@ -49,9 +54,6 @@ public class CartController implements Initializable {
 
     @FXML
     private TableColumn<Cart, ?> priceCol; 
-
-    @FXML
-    private TableColumn<Cart, ?> quantCol; 
 
     @FXML
     private TableColumn<Cart, Void> deleteCol; // Corrigido o tipo aqui
@@ -69,10 +71,9 @@ public class CartController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        idCol.setCellValueFactory(new PropertyValueFactory<>("idProduct")); // Corrigido
+        idCol.setCellValueFactory(new PropertyValueFactory<>("idProduct")); // Certifique-se de que o nome está correto
         nameCol.setCellValueFactory(new PropertyValueFactory<>("nameProd")); // Corrigido
         priceCol.setCellValueFactory(new PropertyValueFactory<>("valueProd")); // Corrigido
-        quantCol.setCellValueFactory(new PropertyValueFactory<>("quat")); // Corrigido
       
         deleteCol.setCellFactory(new Callback<TableColumn<Cart, Void>, TableCell<Cart, Void>>() { // Corrigido o tipo aqui
             @Override
@@ -107,19 +108,18 @@ public class CartController implements Initializable {
 
     public ObservableList<Cart> produtos() {
         Context ctx = new Context();
-        int cont = 1;
-        ObservableList<Cart> Lista2 = FXCollections.observableArrayList();
-        while (true) {
-            Cart produto = ctx.find(Cart.class, (Object)cont);
-            if (produto == null) {
-                break;
-            }
-            Lista2.add(produto);
-            cont++;
+        ObservableList<Cart> lista = FXCollections.observableArrayList();
+        try {
+            String jpql = "SELECT c FROM Cart c";
+            TypedQuery<Cart> query = ctx.createQuery(Cart.class, jpql);
+            List<Cart> produtosList = query.getResultList(); // Usando o java.util.List corretamente
+            lista.addAll(produtosList);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return Lista2;
+        
+        return lista;
     }
-
     public User getLoggedUser() {
         return loggedUser;
     }
@@ -139,7 +139,6 @@ public class CartController implements Initializable {
         }
     }
 
-    // Implemente o método deleteProduct
     private void deleteProduct(Cart product) {
         Context ctx = new Context();
         ctx.begin();
@@ -147,7 +146,6 @@ public class CartController implements Initializable {
             ctx.remove(product); // Chama o método para remover o produto
             ctx.commit();        // Confirma a remoção no banco de dados
             tableView.getItems().remove(product); // Atualiza a tabela
-            tableView.setItems(produtos());
         } catch (Exception e) {
             e.printStackTrace();
             if (ctx != null) {
@@ -155,4 +153,33 @@ public class CartController implements Initializable {
             }
         }
     }
+    
+    @FXML
+    private void cleanCart() {
+        Context ctx = new Context();
+        ctx.begin();
+        try {
+            // Remover todos os itens do carrinho no banco de dados
+            for (Cart cartItem : tableView.getItems()) {
+                ctx.remove(cartItem); // Remove cada item do banco de dados
+            }
+            ctx.commit(); // Confirma todas as remoções no banco
+
+            // Limpa a tabela na interface
+            tableView.getItems().clear(); 
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (ctx != null) {
+                ctx.commit(); // Rollback em caso de erro
+            }
+        }
+}
+
+    
+
+    public void atualizarTabelaCart() {
+        ObservableList<Cart> listaAtualizada = produtos();
+        tableView.setItems(listaAtualizada);
+    }
+    
 }

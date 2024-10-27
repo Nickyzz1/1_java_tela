@@ -27,11 +27,11 @@ public class Cart {
 
      private Long idProduct;
 
-    public Long getidProduct() {
+    public Long getIdProduct() {
         return idProduct;
     }
 
-    public void setidProduct(Long id) {
+    public void setIdProduct(Long id) {
         this.idProduct = id;
     }
 
@@ -52,15 +52,5 @@ public class Cart {
 
     public void setValueProd(Double value) {
         this.valueProd = value;
-    }
-
-    private int quantProd;
-
-    public int getQuant() {
-        return quantProd;
-    }
-
-    public void setQuat(int quant) {
-        this.quantProd = quant;
     }
 }
