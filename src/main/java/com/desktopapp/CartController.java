@@ -172,9 +172,8 @@ public class CartController implements Initializable {
                 ctx.commit(); // Rollback em caso de erro
             }
         }
-}
+    }
 
-    
 
     public void atualizarTabelaCart() {
         ObservableList<Cart> listaAtualizada = produtos();

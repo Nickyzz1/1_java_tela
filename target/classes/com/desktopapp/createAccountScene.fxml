@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.CreateAccountController" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.CreateAccountController">
    <children>
       <Button fx:id="btCreateAccount" layoutX="261.0" layoutY="281.0" mnemonicParsing="false" onAction="#createAccount" text="Criar conta" />
       <Label layoutX="281.0" layoutY="111.0" text="Nome" />
@@ -22,5 +21,6 @@
             <Font size="22.0" />
          </font>
       </Label>
+      <Button fx:id="voltar" layoutX="67.0" layoutY="39.0" mnemonicParsing="false" onAction="#goToLogin" text="Voltar" />
    </children>
 </AnchorPane>

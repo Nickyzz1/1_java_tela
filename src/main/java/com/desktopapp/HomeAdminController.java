@@ -34,6 +34,9 @@ public class HomeAdminController implements Initializable{
     @FXML
     protected Button logout;
 
+    @FXML
+    protected Button btGoToAdd;
+
     private User loggedUser;
 
     @FXML 
@@ -244,6 +247,15 @@ public class HomeAdminController implements Initializable{
 
     @FXML
     public void changeToAddproduct()
-    {}
+    {
+        try {
+            var scene = AddProductsController.CreateScene(getLoggedUser());
+            Stage currentStage = (Stage) btGoToAdd.getScene().getWindow();
+            currentStage.setScene(scene);
+        } catch (Exception e) {
+           System.err.println(e);
+        
+        }
+    }
 
 }

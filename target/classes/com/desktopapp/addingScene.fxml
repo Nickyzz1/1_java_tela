@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.AddProductsController">
+   <children>
+      <Button fx:id="btAdd" layoutX="227.0" layoutY="281.0" mnemonicParsing="false" onAction="#add" text="Adicionar" />
+      <TextField fx:id="nameProd" layoutX="211.0" layoutY="135.0" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="priceProd" layoutX="213.0" layoutY="210.0" prefHeight="25.0" prefWidth="193.0" />
+      <Label layoutX="260.0" layoutY="105.0" text="Nome do produto" />
+      <Label layoutX="204.0" layoutY="176.0" text="Preco do produto(formato ex: 10.00)" />
+      <Label layoutX="249.0" layoutY="59.0" text="Adicione Produtos">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btCancel" layoutX="324.0" layoutY="281.0" mnemonicParsing="false" onAction="#cancelAction" prefHeight="25.0" prefWidth="67.0" text="cancelar" />
+   </children>
+</AnchorPane>

@@ -30,6 +30,8 @@ public class CreateAccountController  {
     protected PasswordField userPassCad;
     @FXML
     protected Button btCreateAccount;
+    @FXML
+    protected Button voltar;
 
     // @Override
     // public void initialize(URL location, ResourceBundle resources) 
@@ -55,5 +57,18 @@ public class CreateAccountController  {
         Stage currentStage = (Stage) btCreateAccount.getScene().getWindow();
         currentStage.setScene(newScene);
         currentStage.show();
+    }
+
+    @FXML
+    public void goToLogin() {
+
+        try {
+            var scene = LoginSceneController.CreateScene();
+            Stage currentStage = (Stage) voltar.getScene().getWindow();
+            currentStage.setScene(scene);
+        } catch (Exception e) {
+            System.err.println(e);
+        }   
+
     }
 }
